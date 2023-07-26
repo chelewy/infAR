@@ -10,17 +10,17 @@
 	  </head>
 	
 	  <body style="margin: 0; overflow: hidden;">
-	    <a-scene
-	      vr-mode-ui="enabled: false"
-	      embedded
-	      arjs="sourceType: webcam; debugUIEnabled: true;"
-	    	>
-	
-	     	<a-box material="color: red;" scale="1 1 1" gps-entity-place="latitude: 44.50439; longitude: 11.30091;"></a-box>
-	     	<a-camera
-		    rotation-reader
-		    gps-camera="simulateLatitude: 40.594359; simulateLongitude: 33.620504; gpsMinDistance: 10;"
-		></a-camera>
-	    </a-scene>
+		    <a-scene
+		      vr-mode-ui="enabled: false"
+		      embedded
+		      arjs="sourceType: webcam; debugUIEnabled: true;"
+		     >
+		
+		     	<a-box material="color: red;" scale="10 10 10" gps-entity-place="latitude: 40.594359; longitude: 33.620504;"></a-box>
+		     	<a-camera
+			    rotation-reader
+			    gps-camera="simulateLatitude: 40.594359; simulateLongitude: 33.620504; gpsMinDistance: 10;"
+			></a-camera>
+		    </a-scene>
 	  </body>
 </html>
