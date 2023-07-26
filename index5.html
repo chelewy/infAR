@@ -28,20 +28,5 @@
     
             <a-camera gps-camera rotation-reader></a-camera>
         </a-scene>
-    
-        
-        <script>
-            AFRAME.registerComponent('gps-coordinate-display', {
-                tick: function () {
-                    const camera = document.querySelector('[gps-camera]');
-                    const latitude = camera.getAttribute('gps-projected-location').latitude;
-                    const longitude = camera.getAttribute('gps-projected-location').longitude;
-                    const altitude = camera.getAttribute('gps-projected-location').altitude;
-                    
-                    const displayEntity = this.el;
-                    displayEntity.setAttribute('text', { value: `Lat: ${latitude.toFixed(6)} Lon: ${longitude.toFixed(6)} Alt: ${altitude.toFixed(2)};` });
-                }
-            });
-        </script>
     </body>
 </html>
