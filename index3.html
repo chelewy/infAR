@@ -45,6 +45,39 @@
             </a-entity>
 
         <a-camera gps-camera rotation-reader></a-camera>
+
+         <script>
+            // Arrow Update Function
+            function updateArrows() {
+                const object = document.getElementById('object');
+                const arrowX = document.getElementById('arrowX');
+                const arrowY = document.getElementById('arrowY');
+                const arrowZ = document.getElementById('arrowZ');
+
+                if (object && arrowX && arrowY && arrowZ) {
+                    // Get object's world position
+                    const objectPosition = object.object3D.getWorldPosition();
+
+                    // Get camera's world position
+                    const cameraPosition = document.querySelector('[gps-camera]').object3D.getWorldPosition();
+
+                    // Calculate direction vector from object to camera
+                    const directionVector = cameraPosition.sub(objectPosition).normalize();
+
+                    // Set arrow directions based on the direction vector
+                    arrowX.setAttribute('arrow', `direction: ${directionVector.x} 0 0`);
+                    arrowY.setAttribute('arrow', `direction: 0 ${directionVector.y} 0`);
+                    arrowZ.setAttribute('arrow', `direction: 0 0 ${directionVector.z}`);
+                }
+
+                requestAnimationFrame(updateArrows);
+            }
+
+            // Call the arrow update function
+            updateArrows();
+        </script>
+
+        
     </a-scene>
 </body>
 </html>
