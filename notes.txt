@@ -1,1 +1,3 @@
 https://ar-js-org.github.io/AR.js-Docs/location-based/
+https://youtu.be/x3ozI1MKm4E
+https://ar-js-org.github.io/AR.js-Docs/location-based-aframe/
