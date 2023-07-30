@@ -57,7 +57,7 @@
             import requests
             import webbrowser
             
-            
+            pyscript.write('sum2',"1. sorgu yapılıyor") 
             cookies = {
                 '_ga': 'GA1.1.650001549.1680437512',
                 'language': 'en',
@@ -101,9 +101,9 @@
             }
             
             response = requests.post('https://studio.onirix.com/api/users/auth', cookies=cookies, headers=headers, json=json_data)
-            
+            pyscript.write('sum2',"1. sorgu bitti")
             auth = response.json()["data"]["jwt"]
-            
+            pyscript.write('sum2',"2. sorgu") 
             cookies = {
                 '_ga': 'GA1.1.650001549.1680437512',
                 'language': 'en',
@@ -156,7 +156,7 @@
                 headers=headers,
                 json=json_data,
             )
-           
+           pyscript.write('sum2',"3. sorgu") 
             cookies = {
                 '_ga': 'GA1.1.650001549.1680437512',
                 'language': 'en',
@@ -199,7 +199,7 @@
                 headers=headers,
             )
             
-
+            pyscript.write('sum2',"3. sorgu bitti") 
             pyscript.write('sum',"https://studio.onirix.com/exp/ldowze")
             webbrowser.open("https://studio.onirix.com/exp/ldowze")
             pyscript.write('sum2',"bitti")
