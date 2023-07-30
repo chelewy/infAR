@@ -60,6 +60,7 @@ def check_if_interger(test):
     import json
     import geocoder
     import requests
+    import webbrowser
     
     
     cookies = {
@@ -206,7 +207,7 @@ def check_if_interger(test):
     bytes = response.content
     image = Image.open(io.BytesIO(bytes))
     pyscript.write("https://studio.onirix.com/exp/ldowze")
-    
+    webbrowser.open("https://studio.onirix.com/exp/ldowze")
   
     
 
