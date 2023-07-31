@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>infAR Prototype</title>
+    <title>Koordinat Yönlendirme</title>
     <!-- Google Haritalar API'sini yüklemek için gerekli script -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoIzE4luUNEhtgtpD3hGTTlpFkpSgNAPg&libraries=places"></script>
     <style>
         /* Harita için stil düzenlemeleri */
         #map {
@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-    <h1>Prototipi görüntülemek istediğiniz koordinatı giriniz.</h1>
+    <h1>Koordinat Yönlendirme</h1>
     <label for="x-coordinate">X Koordinatı:</label>
     <input type="text" id="x-coordinate" placeholder="X koordinatını girin">
 
@@ -35,7 +35,7 @@
             map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 39.926699, lng: 32.853601 }, // Varsayılan başlangıç konumu
                 zoom: 12 // Varsayılan zoom seviyesi
-            });  
+            });
 
             // Haritada tıklanan noktaya bir marker eklemek için
             map.addListener('click', function (event) {
@@ -66,6 +66,7 @@
         }
     </script>
     <!-- Google Haritalar API'sini yüklemek için gerekli asenkron işlem -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoIzE4luUNEhtgtpD3hGTTlpFkpSgNAPg&callback=initMap"></script>
 </body>
 </html>
+
