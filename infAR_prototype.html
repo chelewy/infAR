@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Koordinat Yönlendirme</title>
+</head>
+<body>
+    <h1>Koordinat Yönlendirme</h1>
+    <label for="x-coordinate">X Koordinatı:</label>
+    <input type="text" id="x-coordinate" placeholder="X koordinatını girin">
+
+    <label for="y-coordinate">Y Koordinatı:</label>
+    <input type="text" id="y-coordinate" placeholder="Y koordinatını girin">
+
+    <button onclick="redirect()">Yönlendir</button>
+
+    <script>
+        function redirect() {
+            var x = document.getElementById('x-coordinate').value;
+            var y = document.getElementById('y-coordinate').value;
+            var redirectURL = "http://lotes.epolis.eu/mert/" + x + "/" + y;
+            window.location.href = redirectURL;
+        }
+    </script>
+</body>
+</html>
