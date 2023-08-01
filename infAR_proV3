@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Koordinat Yönlendirme</title>
+    <!-- Google Haritalar API'sini yüklemek için gerekli script -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoIzE4luUNEhtgtpD3hGTTlpFkpSgNAPg&libraries=places"></script>
+    <style>
+        /* Harita için stil düzenlemeleri */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Koordinat Yönlendirme</h1>
+    <label for="x-coordinate">X Koordinatı:</label>
+    <input type="text" id="x-coordinate" placeholder="X koordinatını girin">
+
+    <label for="y-coordinate">Y Koordinatı:</label>
+    <input type="text" id="y-coordinate" placeholder="Y koordinatını girin">
+
+    <button onclick="redirectToURL()">Yönlendir</button>
+
+    <h2>Harita Üzerinde Nokta Seçin</h2>
+    <div id="map"></div>
+
+    <button onclick="centerMapOnUserLocation()">Cihaz Konumunu Merkezle</button>
+
+    <script>
+        var map;
+        var marker;
+        var xCoordinateInput = document.getElementById('x-coordinate');
+        var yCoordinateInput = document.getElementById('y-coordinate');
+
+        function initMap() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        center: userLatLng, // Kullanıcı cihazından alınan konum
+                        zoom: 12 // Varsayılan zoom seviyesi
+                    });
+
+                    // Kullanıcının koordinatını göstermek için bir pin ekliyoruz
+                    marker = new google.maps.Marker({
+                        position: userLatLng,
+                        map: map
+                    });
+
+                    // Haritada tıklanan noktaya bir marker eklemek için
+                    map.addListener('click', function (event) {
+                        placeMarker(event.latLng);
+                    });
+                });
+            }
+        }
+
+        function placeMarker(location) {
+            if (marker) {
+                marker.setMap(null); // Varolan bir marker varsa kaldırıyoruz
+            }
+
+            marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+
+            // Seçilen koordinatları alanlara yazıyoruz
+            xCoordinateInput.value = location.lat();
+            yCoordinateInput.value = location.lng();
+        }
+
+        function redirectToURL() {
+            var x = xCoordinateInput.value;
+            var y = yCoordinateInput.value;
+            var redirectURL = "http://lotes.epolis.eu/mert/" + x + "/" + y;
+            window.location.href = redirectURL;
+        }
+
+        function centerMapOnUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    map.setCenter(userLatLng);
+                    // Kullanıcının koordinatını gösteren pini güncelliyoruz
+                    marker.setPosition(userLatLng);
+                });
+            }
+        }
+    </script>
+    <!-- Google Haritalar API'sini yüklemek için gerekli asenkron işlem -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoIzE4luUNEhtgtpD3hGTTlpFkpSgNAPg&callback=initMap"></script>
+</body>
+</html>
