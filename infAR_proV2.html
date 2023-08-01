@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>infAR Prototype</title>
+    <title>Koordinat Yönlendirme</title>
     <!-- Google Haritalar API'sini yüklemek için gerekli script -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoIzE4luUNEhtgtpD3hGTTlpFkpSgNAPg&libraries=places"></script>
     <style>
@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-    <h1>Prototipi Denemek İstediğiniz Koordinatı Giriniz</h1>
+    <h1>Koordinat Yönlendirme</h1>
     <label for="x-coordinate">X Koordinatı:</label>
     <input type="text" id="x-coordinate" placeholder="X koordinatını girin">
 
@@ -24,6 +24,8 @@
 
     <h2>Harita Üzerinde Nokta Seçin</h2>
     <div id="map"></div>
+
+    <button onclick="centerMapOnUserLocation()">Cihaz Konumunu Merkezle</button>
 
     <script>
         var map;
@@ -38,6 +40,12 @@
                     map = new google.maps.Map(document.getElementById('map'), {
                         center: userLatLng, // Kullanıcı cihazından alınan konum
                         zoom: 12 // Varsayılan zoom seviyesi
+                    });
+
+                    // Kullanıcının koordinatını göstermek için bir pin ekliyoruz
+                    marker = new google.maps.Marker({
+                        position: userLatLng,
+                        map: map
                     });
 
                     // Haritada tıklanan noktaya bir marker eklemek için
@@ -68,6 +76,17 @@
             var y = yCoordinateInput.value;
             var redirectURL = "http://lotes.epolis.eu/mert/" + x + "/" + y;
             window.location.href = redirectURL;
+        }
+
+        function centerMapOnUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    map.setCenter(userLatLng);
+                    // Kullanıcının koordinatını gösteren pini güncelliyoruz
+                    marker.setPosition(userLatLng);
+                });
+            }
         }
     </script>
     <!-- Google Haritalar API'sini yüklemek için gerekli asenkron işlem -->
